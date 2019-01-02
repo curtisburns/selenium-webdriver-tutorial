@@ -66,11 +66,168 @@
 
 //////////////////////////////////////////////////// // Video 3 - getText() /////////////////////////////////////////////
 
-// This will test if the input, the button and the alert works as planned in the libraries app
+// // This will test get the visible text of the elements we target
 
-const webdriver = require('selenium-webdriver'),
-      By = webdriver.By,
-      until = webdriver.until;
+// const webdriver = require('selenium-webdriver'),
+//       By = webdriver.By,
+//       until = webdriver.until;
+
+// //To fix ChromeDriver error 
+// const chrome = require('selenium-webdriver/chrome');
+// const path = require('chromedriver').path;
+// const service = new chrome.ServiceBuilder(path).build();
+      
+// chrome.setDefaultService(service);
+
+// const driver = new webdriver.Builder().forBrowser('chrome').build();
+
+// driver.get('https://library-app.firebaseapp.com/');
+
+
+// driver.findElement(By.css('input'));
+
+// driver.findElement(By.css('.btn-lg')).getText().then(function(txt) {
+//     console.log('button text is ' + txt);
+// });
+
+// driver.findElements(By.css('nav li')).then(function(els) {
+//     els.map(function(el){
+//         el.getText().then(function(txt) {
+//             console.log("the text of the navbar element is: " + txt);
+//         })
+//     })
+// });
+
+
+// //You can run this directly in node. 
+// //node test.js
+
+//////////////////////////////////////////////////// // Video 4 - sendKeys() & click() //////////////////////////////////////
+
+
+// // This will enter an email address and click the submit button
+
+// const webdriver = require('selenium-webdriver'),
+//       By = webdriver.By,
+//       until = webdriver.until;
+
+// //To fix ChromeDriver error 
+// const chrome = require('selenium-webdriver/chrome');
+// const path = require('chromedriver').path;
+// const service = new chrome.ServiceBuilder(path).build();
+      
+// chrome.setDefaultService(service);
+
+// const driver = new webdriver.Builder().forBrowser('chrome').build();
+
+// driver.get('https://library-app.firebaseapp.com/');
+
+
+// driver.findElement(By.css('input')).sendKeys('test@test.com');
+// driver.findElement(By.css('.btn-lg')).click();
+
+// // This next command needs to be delayed as Web driver will not wait for this element 
+// // to load (which takes a few milliseconds despite the button being clicked;
+// driver.findElement(By.css('.alert-success')).getText().then(txt => console.log('the text for the alert is' + txt));
+
+
+// driver.sleep(10000).then(() => {
+//     driver.quit()
+// });
+
+// //You can run this directly in node. 
+// //node test.js 
+
+
+
+/////////////////////////////////////////// // Video 5 - Explicit and Implicit Waits < deprecated //////////////////////////////////////
+
+
+// This will wait for the alert to load before looking for it to avoid error
+
+// const webdriver = require('selenium-webdriver'),
+//       By = webdriver.By,
+//       until = webdriver.until;
+
+// //To fix ChromeDriver error 
+// const chrome = require('selenium-webdriver/chrome');
+// const path = require('chromedriver').path;
+// const service = new chrome.ServiceBuilder(path).build();
+      
+// chrome.setDefaultService(service);
+
+// const driver = new webdriver.Builder().forBrowser('chrome').build();
+
+// driver.get('https://library-app.firebaseapp.com/');
+
+// driver.Timeouts().implicit(5000);
+// driver.findElement(By.css('input')).sendKeys('test@test.com');
+// driver.findElement(By.css('.btn-lg')).click();
+
+// // // // This next command needs to be delayed as Web driver will not wait for this element 
+// // // // to load (which takes a few milliseconds despite the button being clicked;
+// // // driver.findElement(By.css('.alert-success')).getText().then(txt => console.log('the text for the alert is' + txt));
+
+// // // Sleep function has since been changed into a promise - correction - promise management has been deprecated.
+// This is not ideal (bad practice) and should use other wait functions
+// // // Never use in production, maybe just to debug
+// // driver.sleep(5000).then(() => {
+// //     driver.findElement(By.css('.alert-success')).getText().then(txt => console.log('the text for the alert is ' + txt));
+// // });
+
+// driver.sleep(10000).then(() => {
+//     driver.quit()
+// });
+
+// // You can run this directly in node. 
+// // node test.js 
+
+
+//////////////////////// IMPORTANT - Promises have been deprecated in new WebDriverJS - need to use async await; ////////////////
+
+// Read further into wait and until, there are a lot of conditional functions available to us
+// Until will loop until a truthy is returned e.g it has found the element.
+
+// const webdriver = require('selenium-webdriver');
+// const {Builder, By, Key, until} = webdriver;
+
+// //To fix ChromeDriver error 
+// const chrome = require('selenium-webdriver/chrome');
+// const path = require('chromedriver').path;
+// const service = new chrome.ServiceBuilder(path).build();
+      
+// chrome.setDefaultService(service);
+
+// (async function myTest() {
+//  const driver = new webdriver.Builder().forBrowser('chrome').build(); 
+//  try {
+//   await driver.get('http://library-app.firebaseapp.com');
+//   await driver.findElement(By.css('input')).sendKeys('user@gmail.com');
+//   await driver.findElement(By.css('.btn-lg')).click();
+  
+//   // Note the alternative way of inputing the params (no By);
+//   await driver.wait(until.elementsLocated({css: '.alert-success'}), 10000);
+
+//   await driver.findElement({css: '.alert-success'}).getText()
+//    .then( txt => {
+//    console.log(`Alert text is - ${txt}`);
+//   },
+//    err => {
+//     console.log(`ERROR - ${err}`);
+//    });
+
+//   await driver.sleep(3000); 
+  
+//  } finally {
+//   await driver.quit();
+//  }
+// })();
+
+
+////////////////////////////////// Video 8 - Explicit waits - custom conditions ////////////////////////////////////////////
+
+const webdriver = require('selenium-webdriver');
+const {Builder, By, Key, until} = webdriver;
 
 //To fix ChromeDriver error 
 const chrome = require('selenium-webdriver/chrome');
@@ -79,25 +236,39 @@ const service = new chrome.ServiceBuilder(path).build();
       
 chrome.setDefaultService(service);
 
-const driver = new webdriver.Builder().forBrowser('chrome').build();
-
-driver.get('https://library-app.firebaseapp.com/');
-
-
-driver.findElement(By.css('input'));
-
-driver.findElement(By.css('.btn-lg')).getText().then(function(txt) {
-    console.log('button text is ' + txt);
-});
-
-driver.findElements(By.css('nav li')).then(function(els) {
-    els.map(function(el){
-        el.getText().then(function(txt) {
-            console.log("the text of the navbar element is: " + txt);
-        })
+(async function myTest() {
+ const driver = new webdriver.Builder().forBrowser('chrome').build(); 
+ try {
+  await driver.get('http://library-app.firebaseapp.com');
+  await driver.findElement(By.css('input')).sendKeys('user@gmail.com');
+  const submitBtn = await driver.findElement(By.css('.btn-lg'));
+  
+  // Custom wait condition;
+  await driver.wait(function() {
+    // return submitBtn.isEnabled();
+    return submitBtn.getCssValue('opacity').then(function(propVal){
+        // console.log(propVal) turns out to be a string
+        // return propVal === '1';
+        return propVal == 1;
     })
-});
+  }, 15000);
 
+  await submitBtn.click();
 
-//You can run this directly in node. 
-//node test.js
+  // Note the alternative way of inputing the params (no By);
+  await driver.wait(until.elementsLocated({css: '.alert-success'}), 10000);
+
+  await driver.findElement({css: '.alert-success'}).getText()
+   .then( txt => {
+   console.log(`Alert text is - ${txt}`);
+  },
+   err => {
+    console.log(`ERROR - ${err}`);
+   });
+
+  await driver.sleep(6000); 
+  
+ } finally {
+  await driver.quit();
+ }
+})();
