@@ -1,0 +1,432 @@
+{
+  "stats": {
+    "suites": 6,
+    "tests": 9,
+    "passes": 9,
+    "pending": 0,
+    "failures": 0,
+    "start": "2019-01-02T18:07:49.427Z",
+    "end": "2019-01-02T18:07:59.852Z",
+    "duration": 10425,
+    "testsRegistered": 9,
+    "passPercent": 100,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false,
+    "passPercentClass": "success",
+    "pendingPercentClass": "danger"
+  },
+  "suites": {
+    "uuid": "840bff0f-06b9-4e6b-8ee5-94b666afaf44",
+    "title": "",
+    "fullFile": "",
+    "file": "",
+    "beforeHooks": [],
+    "afterHooks": [
+      {
+        "title": "\"after all\" hook",
+        "fullTitle": "\"after all\" hook",
+        "timedOut": false,
+        "duration": 0,
+        "pass": false,
+        "fail": false,
+        "pending": false,
+        "code": "if (seleniumServer) {\n  return seleniumServer.kill();\n}",
+        "err": {},
+        "isRoot": true,
+        "uuid": "51256d15-deb2-4dd3-9f3d-487eeeb5c48d",
+        "isHook": true,
+        "skipped": false
+      }
+    ],
+    "tests": [],
+    "suites": [
+      {
+        "uuid": "a7e2b5f3-acb9-45ce-ba4d-321a3393582c",
+        "title": "[chrome]",
+        "fullFile": "/Users/curtisburns/development/den/training/selenium/test/test.js",
+        "file": "/test/test.js",
+        "beforeHooks": [],
+        "afterHooks": [],
+        "tests": [],
+        "suites": [
+          {
+            "uuid": "c64892a5-32e1-42d1-90de-2e2c3dee4fee",
+            "title": "library app scenarios",
+            "fullFile": "/Users/curtisburns/development/den/training/selenium/test/test.js",
+            "file": "/test/test.js",
+            "beforeHooks": [
+              {
+                "title": "\"before all\" hook",
+                "fullTitle": "[chrome] library app scenarios \"before all\" hook",
+                "timedOut": false,
+                "duration": 2649,
+                "pass": false,
+                "fail": false,
+                "pending": false,
+                "code": "driver = await new webdriver.Builder().forBrowser('chrome').build(); \nawait driver.get('http://library-app.firebaseapp.com');\n// driver = await env.builder().build();",
+                "err": {},
+                "isRoot": false,
+                "uuid": "287848f7-bbe1-4c3f-bd1b-f78f48f83111",
+                "isHook": true,
+                "skipped": false
+              }
+            ],
+            "afterHooks": [
+              {
+                "title": "\"after all\" hook",
+                "fullTitle": "[chrome] library app scenarios \"after all\" hook",
+                "timedOut": false,
+                "duration": 84,
+                "pass": false,
+                "fail": false,
+                "pending": false,
+                "code": "driver.quit()",
+                "err": {},
+                "isRoot": false,
+                "uuid": "7130178d-4c0c-43c3-82d9-40e030cb7afa",
+                "isHook": true,
+                "skipped": false
+              }
+            ],
+            "tests": [
+              {
+                "title": "changes button opacity upon button being enabled",
+                "fullTitle": "[chrome] library app scenarios changes button opacity upon button being enabled",
+                "timedOut": false,
+                "duration": 234,
+                "state": "passed",
+                "speed": "slow",
+                "pass": true,
+                "fail": false,
+                "pending": false,
+                "code": "let submitBtn = await driver.findElement(By.css('.btn-lg'));\nawait driver.findElement(By.css('input')).sendKeys('user@gmail.com');\nawait driver.wait(function() {\n    return submitBtn.getCssValue('opacity').then(function(propVal){ \n        console.log(propVal == 1);\n        return propVal == 1;\n    })\n});\nsubmitBtn.getCssValue('opacity').then(function(propVal){ \n    return assert(propVal == 1);\n})",
+                "err": {},
+                "isRoot": false,
+                "uuid": "a64ff50e-1f09-45b4-8ef2-cc0814347e09",
+                "isHook": false,
+                "skipped": false
+              },
+              {
+                "title": "input a valid email and clicking brings up alert success",
+                "fullTitle": "[chrome] library app scenarios input a valid email and clicking brings up alert success",
+                "timedOut": false,
+                "duration": 730,
+                "state": "passed",
+                "speed": "slow",
+                "pass": true,
+                "fail": false,
+                "pending": false,
+                "code": "let submitBtn = await driver.findElement(By.css('.btn-lg'));\nawait submitBtn.click();\nawait driver.wait(until.elementLocated({css: '.alert-success'}), 10000).getText()\n.then( txt => {\nconsole.log(`Alert text is - ${txt}`);\n});",
+                "err": {},
+                "isRoot": false,
+                "uuid": "2559b808-2e76-4b2d-935e-caa8dc46d329",
+                "isHook": false,
+                "skipped": false
+              },
+              {
+                "title": "shows text for nav bar",
+                "fullTitle": "[chrome] library app scenarios shows text for nav bar",
+                "timedOut": false,
+                "duration": 32,
+                "state": "passed",
+                "speed": "fast",
+                "pass": true,
+                "fail": false,
+                "pending": false,
+                "code": "await driver.findElement(By.css('nav')).getText().then(txt => console.log(txt));",
+                "err": {},
+                "isRoot": false,
+                "uuid": "12c7fbee-1f7a-4b69-9690-87953e2f3677",
+                "isHook": false,
+                "skipped": false
+              }
+            ],
+            "suites": [],
+            "passes": [
+              "a64ff50e-1f09-45b4-8ef2-cc0814347e09",
+              "2559b808-2e76-4b2d-935e-caa8dc46d329",
+              "12c7fbee-1f7a-4b69-9690-87953e2f3677"
+            ],
+            "failures": [],
+            "pending": [],
+            "skipped": [],
+            "duration": 996,
+            "root": false,
+            "rootEmpty": false,
+            "_timeout": 10000
+          }
+        ],
+        "passes": [],
+        "failures": [],
+        "pending": [],
+        "skipped": [],
+        "duration": 0,
+        "root": false,
+        "rootEmpty": false,
+        "_timeout": 2000
+      },
+      {
+        "uuid": "5db7b80a-1ac7-4b8d-93d4-f06152da5b0f",
+        "title": "[firefox]",
+        "fullFile": "/Users/curtisburns/development/den/training/selenium/test/test.js",
+        "file": "/test/test.js",
+        "beforeHooks": [],
+        "afterHooks": [],
+        "tests": [],
+        "suites": [
+          {
+            "uuid": "0214cd67-55bf-441b-b17f-d2acf35e901b",
+            "title": "library app scenarios",
+            "fullFile": "/Users/curtisburns/development/den/training/selenium/test/test.js",
+            "file": "/test/test.js",
+            "beforeHooks": [
+              {
+                "title": "\"before all\" hook",
+                "fullTitle": "[firefox] library app scenarios \"before all\" hook",
+                "timedOut": false,
+                "duration": 2457,
+                "pass": false,
+                "fail": false,
+                "pending": false,
+                "code": "driver = await new webdriver.Builder().forBrowser('chrome').build(); \nawait driver.get('http://library-app.firebaseapp.com');\n// driver = await env.builder().build();",
+                "err": {},
+                "isRoot": false,
+                "uuid": "ccad2f6a-b6b6-4e01-81c0-e0094773d2ec",
+                "isHook": true,
+                "skipped": false
+              }
+            ],
+            "afterHooks": [
+              {
+                "title": "\"after all\" hook",
+                "fullTitle": "[firefox] library app scenarios \"after all\" hook",
+                "timedOut": false,
+                "duration": 65,
+                "pass": false,
+                "fail": false,
+                "pending": false,
+                "code": "driver.quit()",
+                "err": {},
+                "isRoot": false,
+                "uuid": "015bbbb2-1300-436b-a759-3969d8d1e112",
+                "isHook": true,
+                "skipped": false
+              }
+            ],
+            "tests": [
+              {
+                "title": "changes button opacity upon button being enabled",
+                "fullTitle": "[firefox] library app scenarios changes button opacity upon button being enabled",
+                "timedOut": false,
+                "duration": 226,
+                "state": "passed",
+                "speed": "slow",
+                "pass": true,
+                "fail": false,
+                "pending": false,
+                "code": "let submitBtn = await driver.findElement(By.css('.btn-lg'));\nawait driver.findElement(By.css('input')).sendKeys('user@gmail.com');\nawait driver.wait(function() {\n    return submitBtn.getCssValue('opacity').then(function(propVal){ \n        console.log(propVal == 1);\n        return propVal == 1;\n    })\n});\nsubmitBtn.getCssValue('opacity').then(function(propVal){ \n    return assert(propVal == 1);\n})",
+                "err": {},
+                "isRoot": false,
+                "uuid": "caf4b7c3-4d6e-4dd4-ad9e-47e6bac5d193",
+                "isHook": false,
+                "skipped": false
+              },
+              {
+                "title": "input a valid email and clicking brings up alert success",
+                "fullTitle": "[firefox] library app scenarios input a valid email and clicking brings up alert success",
+                "timedOut": false,
+                "duration": 657,
+                "state": "passed",
+                "speed": "slow",
+                "pass": true,
+                "fail": false,
+                "pending": false,
+                "code": "let submitBtn = await driver.findElement(By.css('.btn-lg'));\nawait submitBtn.click();\nawait driver.wait(until.elementLocated({css: '.alert-success'}), 10000).getText()\n.then( txt => {\nconsole.log(`Alert text is - ${txt}`);\n});",
+                "err": {},
+                "isRoot": false,
+                "uuid": "4f826e66-971b-4630-8e92-5eb6ebd2ae7c",
+                "isHook": false,
+                "skipped": false
+              },
+              {
+                "title": "shows text for nav bar",
+                "fullTitle": "[firefox] library app scenarios shows text for nav bar",
+                "timedOut": false,
+                "duration": 31,
+                "state": "passed",
+                "speed": "fast",
+                "pass": true,
+                "fail": false,
+                "pending": false,
+                "code": "await driver.findElement(By.css('nav')).getText().then(txt => console.log(txt));",
+                "err": {},
+                "isRoot": false,
+                "uuid": "c28e9449-1ece-4486-bd71-ee820e3429d8",
+                "isHook": false,
+                "skipped": false
+              }
+            ],
+            "suites": [],
+            "passes": [
+              "caf4b7c3-4d6e-4dd4-ad9e-47e6bac5d193",
+              "4f826e66-971b-4630-8e92-5eb6ebd2ae7c",
+              "c28e9449-1ece-4486-bd71-ee820e3429d8"
+            ],
+            "failures": [],
+            "pending": [],
+            "skipped": [],
+            "duration": 914,
+            "root": false,
+            "rootEmpty": false,
+            "_timeout": 10000
+          }
+        ],
+        "passes": [],
+        "failures": [],
+        "pending": [],
+        "skipped": [],
+        "duration": 0,
+        "root": false,
+        "rootEmpty": false,
+        "_timeout": 2000
+      },
+      {
+        "uuid": "99f1a3df-94db-4fdf-9d2d-3c28d146dc49",
+        "title": "[safari]",
+        "fullFile": "/Users/curtisburns/development/den/training/selenium/test/test.js",
+        "file": "/test/test.js",
+        "beforeHooks": [],
+        "afterHooks": [],
+        "tests": [],
+        "suites": [
+          {
+            "uuid": "a1afc0d2-c1a8-4a5b-944a-672b58df306d",
+            "title": "library app scenarios",
+            "fullFile": "/Users/curtisburns/development/den/training/selenium/test/test.js",
+            "file": "/test/test.js",
+            "beforeHooks": [
+              {
+                "title": "\"before all\" hook",
+                "fullTitle": "[safari] library app scenarios \"before all\" hook",
+                "timedOut": false,
+                "duration": 2220,
+                "pass": false,
+                "fail": false,
+                "pending": false,
+                "code": "driver = await new webdriver.Builder().forBrowser('chrome').build(); \nawait driver.get('http://library-app.firebaseapp.com');\n// driver = await env.builder().build();",
+                "err": {},
+                "isRoot": false,
+                "uuid": "0e1204d6-75f8-4c17-b2c5-5522d87d6ac6",
+                "isHook": true,
+                "skipped": false
+              }
+            ],
+            "afterHooks": [
+              {
+                "title": "\"after all\" hook",
+                "fullTitle": "[safari] library app scenarios \"after all\" hook",
+                "timedOut": false,
+                "duration": 119,
+                "pass": false,
+                "fail": false,
+                "pending": false,
+                "code": "driver.quit()",
+                "err": {},
+                "isRoot": false,
+                "uuid": "b86fa47a-a668-4a71-ab9a-0f910b10549a",
+                "isHook": true,
+                "skipped": false
+              }
+            ],
+            "tests": [
+              {
+                "title": "changes button opacity upon button being enabled",
+                "fullTitle": "[safari] library app scenarios changes button opacity upon button being enabled",
+                "timedOut": false,
+                "duration": 160,
+                "state": "passed",
+                "speed": "slow",
+                "pass": true,
+                "fail": false,
+                "pending": false,
+                "code": "let submitBtn = await driver.findElement(By.css('.btn-lg'));\nawait driver.findElement(By.css('input')).sendKeys('user@gmail.com');\nawait driver.wait(function() {\n    return submitBtn.getCssValue('opacity').then(function(propVal){ \n        console.log(propVal == 1);\n        return propVal == 1;\n    })\n});\nsubmitBtn.getCssValue('opacity').then(function(propVal){ \n    return assert(propVal == 1);\n})",
+                "err": {},
+                "isRoot": false,
+                "uuid": "26e0d627-12c6-4dab-a62e-aaef8d3e6eee",
+                "isHook": false,
+                "skipped": false
+              },
+              {
+                "title": "input a valid email and clicking brings up alert success",
+                "fullTitle": "[safari] library app scenarios input a valid email and clicking brings up alert success",
+                "timedOut": false,
+                "duration": 707,
+                "state": "passed",
+                "speed": "slow",
+                "pass": true,
+                "fail": false,
+                "pending": false,
+                "code": "let submitBtn = await driver.findElement(By.css('.btn-lg'));\nawait submitBtn.click();\nawait driver.wait(until.elementLocated({css: '.alert-success'}), 10000).getText()\n.then( txt => {\nconsole.log(`Alert text is - ${txt}`);\n});",
+                "err": {},
+                "isRoot": false,
+                "uuid": "7be239db-78bb-424a-8dd9-22fd45e78ea7",
+                "isHook": false,
+                "skipped": false
+              },
+              {
+                "title": "shows text for nav bar",
+                "fullTitle": "[safari] library app scenarios shows text for nav bar",
+                "timedOut": false,
+                "duration": 33,
+                "state": "passed",
+                "speed": "fast",
+                "pass": true,
+                "fail": false,
+                "pending": false,
+                "code": "await driver.findElement(By.css('nav')).getText().then(txt => console.log(txt));",
+                "err": {},
+                "isRoot": false,
+                "uuid": "8bc5a742-e9c2-436e-b7e1-8d2fd9f491db",
+                "isHook": false,
+                "skipped": false
+              }
+            ],
+            "suites": [],
+            "passes": [
+              "26e0d627-12c6-4dab-a62e-aaef8d3e6eee",
+              "7be239db-78bb-424a-8dd9-22fd45e78ea7",
+              "8bc5a742-e9c2-436e-b7e1-8d2fd9f491db"
+            ],
+            "failures": [],
+            "pending": [],
+            "skipped": [],
+            "duration": 900,
+            "root": false,
+            "rootEmpty": false,
+            "_timeout": 10000
+          }
+        ],
+        "passes": [],
+        "failures": [],
+        "pending": [],
+        "skipped": [],
+        "duration": 0,
+        "root": false,
+        "rootEmpty": false,
+        "_timeout": 2000
+      }
+    ],
+    "passes": [],
+    "failures": [],
+    "pending": [],
+    "skipped": [],
+    "duration": 0,
+    "root": true,
+    "rootEmpty": true,
+    "_timeout": 2000
+  },
+  "copyrightYear": 2019
+}

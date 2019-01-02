@@ -226,8 +226,174 @@
 
 ////////////////////////////////// Video 8 - Explicit waits - custom conditions ////////////////////////////////////////////
 
+// const webdriver = require('selenium-webdriver');
+// const {Builder, By, Key, until} = webdriver;
+
+// //To fix ChromeDriver error 
+// const chrome = require('selenium-webdriver/chrome');
+// const path = require('chromedriver').path;
+// const service = new chrome.ServiceBuilder(path).build();
+      
+// chrome.setDefaultService(service);
+
+// (async function myTest() {
+//  const driver = new webdriver.Builder().forBrowser('chrome').build(); 
+//  try {
+//   await driver.get('http://library-app.firebaseapp.com');
+//   await driver.findElement(By.css('input')).sendKeys('user@gmail.com');
+//   const submitBtn = await driver.findElement(By.css('.btn-lg'));
+  
+//   // Custom wait condition;
+//   await driver.wait(function() {
+//     // return submitBtn.isEnabled();
+//     return submitBtn.getCssValue('opacity').then(function(propVal){
+//         // console.log(propVal) turns out to be a string
+//         // return propVal === '1';
+//         return propVal == 1;
+//     })
+//   }, 15000);
+
+//   await submitBtn.click();
+
+//   // Note the alternative way of inputing the params (no By);
+//   await driver.wait(until.elementsLocated({css: '.alert-success'}), 10000);
+
+//   await driver.findElement({css: '.alert-success'}).getText()
+//    .then( txt => {
+//    console.log(`Alert text is - ${txt}`);
+//   },
+//    err => {
+//     console.log(`ERROR - ${err}`);
+//    });
+
+//   await driver.sleep(6000); 
+  
+//  } finally {
+//   await driver.quit();
+//  }
+// })();
+
+/////////////////////////////// Video 9 - Mocha testing ////////////////////////////////////////////////
+
+// const webdriver = require('selenium-webdriver');
+// const { Builder, By, Key, until } = webdriver;
+// const { describe, it, after, before } = require('selenium-webdriver/testing'); //provides extensions for Mocha/Jasmine;
+
+// //To fix ChromeDriver error 
+// const chrome = require('selenium-webdriver/chrome');
+// const path = require('chromedriver').path;
+// const service = new chrome.ServiceBuilder(path).build();
+      
+// chrome.setDefaultService(service);
+
+// let driver;
+
+// describe('library app scenarios', function() {
+//     //Default is two seconds because unit testing is generally quite fast.
+//     this.timeout(5000);
+//     beforeEach(function() {
+//         driver = new webdriver.Builder().forBrowser('chrome').build(); 
+//         driver.get('http://library-app.firebaseapp.com');
+//     })
+
+//     afterEach(function() {
+//         driver.quit();
+//     })
+
+//     it('changes button opacity upon button being enabled', function() {
+//         driver.wait(function() {
+//             return submitBtn.getCssValue('opacity').then(function(propVal){
+//                 return propVal == 1;
+//             })
+//         }, 5000);
+//     });
+
+//     it('input a valid email and clicking brings up alert success', function() {
+//         const submitBtn = driver.findElement(By.css('.btn-lg'));
+//         driver.findElement(By.css('input')).sendKeys('user@gmail.com');
+//         submitBtn.click();
+//         driver.wait(until.elementsLocated({css: '.alert-success'}), 5000).getText()
+//            .then( txt => {
+//            console.log(`Alert text is - ${txt}`);
+//         });
+//     });
+
+//     it('shows text for nav bar', function() {
+//         driver.findElement(By.css('nav')).getText().then(txt => console.log(txt));
+//     });
+// })
+
+
+
+
+/////////////// IMPORTANT - Mocha functions have been removed - Now just use the testing suite /////////////////
+
+
+// const webdriver = require('selenium-webdriver');
+// const { Builder, By, Key, until } = webdriver;
+// const { suite } = require('selenium-webdriver/testing'); //provides extensions for Mocha/Jasmine;
+
+// //To fix ChromeDriver error 
+// const chrome = require('selenium-webdriver/chrome');
+// const path = require('chromedriver').path;
+// const service = new chrome.ServiceBuilder(path).build();
+      
+// chrome.setDefaultService(service);
+
+// suite(function(env) {
+//     describe('library app scenarios', function() {
+//         //Default is two seconds because unit testing is generally quite fast.
+//         this.timeout(10000);
+//         let driver;
+
+//         before(async function() {
+//             driver = await new webdriver.Builder().forBrowser('chrome').build(); 
+//             await driver.get('http://library-app.firebaseapp.com');
+//             // driver = await env.builder().build();
+//         })
+
+//         after(() => driver.quit());
+
+            
+//         it('changes button opacity upon button being enabled', async function() {
+//             let submitBtn = await driver.findElement(By.css('.btn-lg'));
+//             driver.wait(function() {
+//                 return submitBtn.getCssValue('opacity').then(function(propVal){
+//                     return propVal == 1;
+//                 })
+//             }, 8000);
+//         });
+
+//         it('input a valid email and clicking brings up alert success', async function() {
+//             let submitBtn = await driver.findElement(By.css('.btn-lg'));
+//             await driver.findElement(By.css('input')).sendKeys('user@gmail.com');
+//             await submitBtn.click();
+//             await driver.wait(until.elementLocated({css: '.alert-success'}), 10000).getText()
+//             .then( txt => {
+//             console.log(`Alert text is - ${txt}`);
+//             });
+//         });
+
+//         it('shows text for nav bar', async function() {
+//             await driver.findElement(By.css('nav')).getText().then(txt => console.log(txt));
+//         });
+//     })
+// })
+
+
+
+// NOTE: Need to look into setting up the environments
+// NOTE: Remember Mocha is used to run unit tests - We will need to extend the timeout
+// NOTE: Can us Mochawesome to present results nicely - see package.json - npm install mochawesome
+
+///////////////////////////////////// Video 11 - test assertions  //////////////////////////////////////
+
+
 const webdriver = require('selenium-webdriver');
-const {Builder, By, Key, until} = webdriver;
+const { Builder, By, Key, until } = webdriver;
+const { suite } = require('selenium-webdriver/testing'); //provides extensions for Mocha/Jasmine;
+const assert = require('assert'); // Node.js comes with its own assertion library;
+
 
 //To fix ChromeDriver error 
 const chrome = require('selenium-webdriver/chrome');
@@ -236,39 +402,49 @@ const service = new chrome.ServiceBuilder(path).build();
       
 chrome.setDefaultService(service);
 
-(async function myTest() {
- const driver = new webdriver.Builder().forBrowser('chrome').build(); 
- try {
-  await driver.get('http://library-app.firebaseapp.com');
-  await driver.findElement(By.css('input')).sendKeys('user@gmail.com');
-  const submitBtn = await driver.findElement(By.css('.btn-lg'));
-  
-  // Custom wait condition;
-  await driver.wait(function() {
-    // return submitBtn.isEnabled();
-    return submitBtn.getCssValue('opacity').then(function(propVal){
-        // console.log(propVal) turns out to be a string
-        // return propVal === '1';
-        return propVal == 1;
+suite(function(env) {
+    describe('library app scenarios', function() {
+        //Default is two seconds because unit testing is generally quite fast.
+        this.timeout(10000);
+        let driver;
+
+        before(async function() {
+            driver = await new webdriver.Builder().forBrowser('chrome').build(); 
+            await driver.get('http://library-app.firebaseapp.com');
+            // driver = await env.builder().build();
+        })
+
+        after(() => driver.quit());
+
+            
+        it('changes button opacity upon button being enabled', async function() {
+            let submitBtn = await driver.findElement(By.css('.btn-lg'));
+            await driver.findElement(By.css('input')).sendKeys('user@gmail.com');
+            await driver.wait(function() {
+                return submitBtn.getCssValue('opacity').then(function(propVal){ 
+                    console.log(propVal == 1);
+                    return propVal == 1;
+                })
+            });
+
+            submitBtn.getCssValue('opacity').then(function(propVal){ 
+                return assert(propVal == 1);
+            })
+
+        });
+
+        it('input a valid email and clicking brings up alert success', async function() {
+            let submitBtn = await driver.findElement(By.css('.btn-lg'));
+            await submitBtn.click();
+            await driver.wait(until.elementLocated({css: '.alert-success'}), 10000).getText()
+            .then( txt => {
+            console.log(`Alert text is - ${txt}`);
+            });
+        });
+
+        it('shows text for nav bar', async function() {
+            await driver.findElement(By.css('nav')).getText().then(txt => console.log(txt));
+        });
     })
-  }, 15000);
+})
 
-  await submitBtn.click();
-
-  // Note the alternative way of inputing the params (no By);
-  await driver.wait(until.elementsLocated({css: '.alert-success'}), 10000);
-
-  await driver.findElement({css: '.alert-success'}).getText()
-   .then( txt => {
-   console.log(`Alert text is - ${txt}`);
-  },
-   err => {
-    console.log(`ERROR - ${err}`);
-   });
-
-  await driver.sleep(6000); 
-  
- } finally {
-  await driver.quit();
- }
-})();
