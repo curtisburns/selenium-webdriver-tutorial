@@ -440,10 +440,15 @@ suite(function(env) {
             .then( txt => {
             console.log(`Alert text is - ${txt}`);
             });
+            await driver.findElements(By.css('.alert-success')).then(result => {
+                assert(result.length === 1, result.length + " alert-success were found");
+            })
         });
 
         it('shows text for nav bar', async function() {
-            await driver.findElement(By.css('nav')).getText().then(txt => console.log(txt));
+            await driver.findElements(By.css('nav')).then(function(result) {
+                assert.equal(result.length, 1);
+            })
         });
     })
 })
